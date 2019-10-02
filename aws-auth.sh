@@ -2,6 +2,8 @@
 
 set -eo pipefail
 
+OLDPYTHONPATH=$PYTHONPATH
+
 CACHE_DIR=~/.aws/cli/cache
 
 # Make sure we get or refresh the temporary credentials
@@ -30,5 +32,7 @@ fi
 [ -n "$AWS_SECRET_ACCESS_KEY" ] && export AWS_SECRET_ACCESS_KEY
 [ -n "$AWS_SECURITY_TOKEN" ] && export AWS_SECURITY_TOKEN
 [ -n "$AWS_SESSION_TOKEN" ] && export AWS_SESSION_TOKEN
+
+export PYTHONPATH=$OLDPYTHONPATH
 
 exec "$@"
